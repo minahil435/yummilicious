@@ -19,9 +19,9 @@ if (array !== null){
 }
 function displayData(index) {
 
-    const recipeGrid = document.querySelector('#recipeGrid')
+    const recipeGrid = document.querySelector('#FavRecipeGrid')
     const parent = document.createElement('div');
-    parent.className = 'dish';
+    parent.className = 'dishFav';
 
     const image = document.createElement('img');
     image.className = 'dishImage'

@@ -1,16 +1,10 @@
 const itemSearched = window.localStorage.getItem('itemSearched');
 const url = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 
- let dishesArray = []
-// let array  = JSON.parse(window.localStorage.getItem('items'));
-// if (array !== null){
-//     dishesArray =  array
-//     for (const each in array) {
-//         displayData(each)
-//     }
-// }
+let dishesArray = []
 
 let completeURL = url + itemSearched
+
 fetch(completeURL).then(function (response) {
     if (response.ok) {
         return response.json();
@@ -29,7 +23,7 @@ fetch(completeURL).then(function (response) {
 
 function displayData(index) {
 
-    const recipeGrid = document.querySelector('#recipeGrid')
+    const recipeGrid = document.querySelector('.recipeGrid')
     const parent = document.createElement('div');
     parent.className = 'dish';
     parent.id = index
@@ -47,8 +41,8 @@ function displayData(index) {
 
     parent.addEventListener('click', function (event){
         dishClicked(event.currentTarget.id)
-
       });
+
 }
 
 function dishClicked(index){
