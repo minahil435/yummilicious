@@ -1,4 +1,4 @@
-/*  */
+
 /* * { border: 1px solid red; } */
 body{
     background-color: black;
@@ -91,7 +91,6 @@ button {
     gap: 5px;
     position: relative;
   }
-
 
   .dish{
     height: 400px;
@@ -237,5 +236,4 @@ a{
     iframe{
         height: 200px;
     }
-
   }

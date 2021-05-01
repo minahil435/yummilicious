@@ -9,12 +9,12 @@ let dishesArray = []
 
 function ButtonClicked() {
     const hidePictures = document.querySelectorAll('.wallpaper')
-    for (i = 4 ; i < hidePictures.length ; i++){
-    hidePictures[i].style.height = "0px"
-   }
-   const array = document.querySelectorAll('.recipeGrid')
-   const recipeGrid = array[1]
-   recipeGrid.innerHTML = ''
+    for (i = 4; i < hidePictures.length; i++) {
+        hidePictures[i].style.height = "0px"
+    }
+    const array = document.querySelectorAll('.recipeGrid')
+    const recipeGrid = array[1]
+    recipeGrid.innerHTML = ''
 
     const search = document.querySelector("#background")
     search.style.top = "120px"
@@ -70,7 +70,6 @@ function displayData(index) {
     parent.addEventListener('click', function (event) {
         dishClicked(event.currentTarget.id)
     });
-
 }
 
 function dishClicked(index) {
