@@ -7,8 +7,8 @@ const recipeImage = document.querySelector('#recipeImage')
 recipeImage.src = recipe.strMealThumb
 const instruction = document.querySelector('#instruction')
 instruction.innerText = recipe.strInstructions
-const website = document.querySelector('a')
-website.href = recipe.strYoutube
+const website = document.querySelector('iframe')
+website.src = "https://www.youtube.com/embed/" + recipe.strYoutube.split("watch?v=")[1] 
 
 const loveButton = document.querySelector('#loveButton')
 loveButton.addEventListener("click", ButtonClicked)

@@ -1,78 +1,79 @@
+const url = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 const searchButton = document.querySelector('#submit')
 const input = document.querySelector('#input')
+const headingDivForRecipes = document.querySelector("#headingDiv2")
+const SavedItemsButton = document.querySelector('#SavedItems')
 searchButton.addEventListener("click", ButtonClicked)
-
-function ButtonClicked(){
-    if (input.value === null || input.value === ' '|| input.value === ''){}
-    else{
-    window.localStorage.setItem('itemSearched', input.value);
-    window.location.href = "dishes.html"}
- }
-
+SavedItemsButton.addEventListener("click", SavedItemsButtonClicked)
 let dishesArray = []
-let array  = JSON.parse(window.localStorage.getItem('Saveditems'));
-if (array !== null){
-    dishesArray =  array
-    for (const each in array) {
-        displayData(each)
+
+function ButtonClicked() {
+    const hidePictures = document.querySelectorAll('.wallpaper')
+    for (i = 4 ; i < hidePictures.length ; i++){
+    hidePictures[i].style.height = "0px"
+   }
+   const array = document.querySelectorAll('.recipeGrid')
+   const recipeGrid = array[1]
+   recipeGrid.innerHTML = ''
+
+    const search = document.querySelector("#background")
+    search.style.top = "120px"
+
+    if (input.value === null || input.value === ' ' || input.value === '') { }
+    else {
+        headingDivForRecipes.innerText = "Recipes for " + input.value
+        displayRecipes(input.value)
     }
 }
-function displayData(index) {
 
-    const recipeGrid = document.querySelector('#FavRecipeGrid')
+function SavedItemsButtonClicked() {
+    window.location.href = "SavedItemsTab.html"
+}
+
+function displayRecipes(name) {
+    fetch(url + name).then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return Promise.reject(response);
+        }
+    }).then(function (data) {
+        let i = 0
+        for (const each of data.meals) {
+            dishesArray.push(each)
+            displayData(i)
+            i = i + 1;
+        }
+        window.localStorage.setItem('items', JSON.stringify(dishesArray));
+    })
+}
+
+function displayData(index) {
+    const array = document.querySelectorAll('.recipeGrid')
+    const recipeGrid = array[1]
     const parent = document.createElement('div');
-    parent.className = 'dishFav';
+    parent.className = 'dish';
+    parent.id = index
 
     const image = document.createElement('img');
     image.className = 'dishImage'
     image.src = dishesArray[index].strMealThumb
-    image.id = index
 
     const title = document.createElement('h3');
     title.innerText = dishesArray[index].strMeal
-
-    const button = document.createElement('button');
-    button.innerText = "remove"
-    button.id =  dishesArray[index].idMeal
-
-    button.addEventListener('click', function (event){
-        deleteItem(event.currentTarget.id)
-
-      });
+    title.className = "whitefontcolor"
 
     parent.appendChild(image)
     parent.appendChild(title)
-    parent.appendChild(button)
-
     recipeGrid.appendChild(parent)
 
-    image.addEventListener('click', function (event){
+    parent.addEventListener('click', function (event) {
         dishClicked(event.currentTarget.id)
+    });
 
-      });
 }
-function dishClicked(index){
-    console.log(index)
+
+function dishClicked(index) {
     window.localStorage.setItem('recipe', JSON.stringify(dishesArray[index]));
     window.location.href = "recipe.html"
-}
-
-
-function deleteItem(num){
-    
-    let element =  dishesArray.filter(function (e) {
-        return e.idMeal === num
-    });
-    
-    console.log(element)
-    console.log(dishesArray)
-    console.log(dishesArray.indexOf(element[0]))
-
-    let index = dishesArray.indexOf(element[0])
- 
-    dishesArray.splice(index, 1);
-    console.log(dishesArray)
-    window.localStorage.setItem('Saveditems', JSON.stringify(dishesArray));
-    location.reload();
-  
 }
