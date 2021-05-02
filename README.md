@@ -1,8 +1,7 @@
 # yummilicious
-=========
 
-[https://based.cooking](https://minahil435.github.io/yummilicious/)
-This is a simple cooking website where users can submit recipes here for credit. There are no ads, trackers, cookies (unless recipes thereof) or javascript.
+[https://yummilicious.cooking](https://minahil435.github.io/yummilicious/)
+This is a simple cooking website where users can see recipes and learn to cook. There are no ads, trackers or cookies.
 
 ## About the site
 
