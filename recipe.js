@@ -22,6 +22,7 @@ function ButtonClicked() {
     else {
         array = [recipe]
     }
+    loveButton.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png")';
     window.localStorage.setItem('Saveditems', JSON.stringify(array));
 
 }
